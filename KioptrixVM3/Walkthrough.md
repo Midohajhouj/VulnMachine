@@ -61,7 +61,7 @@ Nmap done: 256 IP addresses (5 hosts up) scanned in 9.44 seconds
                                 
 ADD 192.168.48.149 kioptrix3.com
                                                                                               
-cat /etc/hosts
+## cat /etc/hosts
 
 127.0.0.1            localhost
 
