@@ -1,4 +1,4 @@
-## Kioptrix VM3 Walkthrough by MIDO
+## Kioptrix VM3 Walkthrough VulnHub by MIDO
 
 This is a step-by-step guide to exploiting and escalating privileges on the Kioptrix VM3 machine. The walkthrough involves enumeration, service scanning, web application exploitation, and privilege escalation.
 
