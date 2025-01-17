@@ -61,14 +61,19 @@ Nmap done: 256 IP addresses (5 hosts up) scanned in 9.44 seconds
                                 
 ADD 192.168.48.149 kioptrix3.com
                                                                                               
-┌──(root㉿kali)-[/home/kali]
-└─# cat /etc/hosts
-127.0.0.1       localhost
-127.0.1.1       kali
-::1             localhost ip6-localhost ip6-loopback
-ff02::1         ip6-allnodes
-ff02::2         ip6-allrouters
-192.168.48.149  kioptrix3.com
+cat /etc/hosts
+
+127.0.0.1            localhost
+
+127.0.1.1             kali
+
+::1                  localhost ip6-localhost ip6-loopback
+
+ff02::1             ip6-allnodes
+
+ff02::2               ip6-allrouters
+
+192.168.48.149         kioptrix3.com
                                 
 
 ## 3.Service Enumeration (Port Scanning)
