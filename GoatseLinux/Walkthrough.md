@@ -31,6 +31,9 @@ This is a step-by-step walkthrough of the "Goatse" VulnHub machine. The goal is 
 
 #### Identify the Target IP
 Run the following command to discover the target's IP address:
+## in my case the ip address : 192.168.48.160
+
+
 
 ### nmap 192.168.48.1/24 -sV
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-01-16 19:23 EST
@@ -218,10 +221,10 @@ jblow:$1$35A0vqVF$MoYgZm/DxNS5nBZZk3Y2R1:14422:0:99999:7:::
 
 
 ### what just happen 
-in a linux machines the /etc/passwd , /etc/shadow files it where the users and passwd are storred 
-we use the webmin vuln in this module to execute a cat command to the path .
+in a linux machines the /etc/passwd , /etc/shadow files it where the users and passwd are stored.
+we use the webmin vuln in this module to execute a cat command to the given path .
 
-now lets crack this 4 hash 
+### now lets crack this 4 hash 
 
 ## first create a file named hash.txt put it on desktop and copy the hashs and use john the ripper
                                                                                                         
