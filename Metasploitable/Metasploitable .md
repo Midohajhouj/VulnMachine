@@ -31,6 +31,7 @@ Please remember that VulnHub is a free community resource so we are unable to ch
     Metasploitable.zip (Size: 545 MB)
     Download (Mirror): https://download.vulnhub.com/metasploitable/Metasploitable.zip
 
+IN MY CASE THE TARGET IP WAS 192.168.48.145
 
 ## Step 2: Reconnaissance
 
