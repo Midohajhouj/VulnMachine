@@ -31,8 +31,7 @@ This is a step-by-step walkthrough of the "Goatse" VulnHub machine. The goal is 
 
 #### Identify the Target IP
 Run the following command to discover the target's IP address:
-## in my case the ip address : 192.168.48.160
-
+## IN MY CASE THE TARGET IP WAS 192.168.48.160
 
 
 ### nmap 192.168.48.1/24 -sV
