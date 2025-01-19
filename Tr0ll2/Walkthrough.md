@@ -124,8 +124,9 @@ answer.txt                    100%[=============================================
 
 2025-01-19 00:19:31 (14.3 MB/s) - ‘answer.txt’ saved [1412653/1412653]
 
-
+it a base64 encoding algorithm let decode it 
 ## base64 -d answer.txt >> pass.txt
+
 
 ## now we have a username in usr.txt , and unknown password on pass.txt
 
