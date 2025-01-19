@@ -209,7 +209,7 @@ applicable law.
 Last login: Tue Oct 14 19:07:13 2014 from 10.0.0.12
 Connection to 192.168.48.166 closed.
 
-## LOL
+## LOL auto-kick
 
 ## ftp Tr0ll@192.168.48.166                                                  
 Connected to 192.168.48.166.
