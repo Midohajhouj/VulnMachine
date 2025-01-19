@@ -31,7 +31,7 @@ Nmap done: 1 IP address (1 host up) scanned in 11.99 seconds
 
 ## Step 2: Web Enumeration
 
-## Visit the HTTP service in your browser to check for any clues. Use feroxbuster to enumerate directories and hidden files.
+Visit the HTTP service in your browser to check for any clues. Use feroxbuster to enumerate directories and hidden files.
 
 ## feroxbuster -u http://192.168.48.166/ -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -C404  
                                                                                                                       
@@ -109,10 +109,9 @@ sdwTi
 }}HQ\)
 B6F@
 T"8V
+Look Deep within y0ur_self for the answer
 
-## Look Deep within y0ur_self for the answer
-
-it maybe a hidden directory
+## it maybe a hidden directory
 
 ## wget http://192.168.48.166/y0ur_self/answer.txt
 --2025-01-19 00:19:31--  http://192.168.48.166/y0ur_self/answer.txt
@@ -128,7 +127,7 @@ answer.txt                    100%[=============================================
 
 ## base64 -d answer.txt >> pass.txt
 
-## now we have a username
+## now we have a username in usr.txt , and unknown password on pass.txt
 
 ## let jump to hydra
 ## cat usr.txt
