@@ -1,4 +1,4 @@
-Metasploitable Walkthrough
+Metasploitable Walkthrough.
 
 This README provides a step-by-step guide to identifying and exploiting vulnerabilities in the Metasploitable virtual machine for learning and practice purposes.
 Prerequisites
