@@ -14,7 +14,7 @@ Prerequisites:
 
 1. Network Configuration and Target Information
 
-Ensure that the Kioptrix VM3 and the attacking machine are on the same network. For this example, let's assume the target IP address of the Kioptrix VM3 is 192.168.48.149.
+Ensure that the Kioptrix VM3 and the attacking machine are on the same network. For this example, let's assume the target IP address of the Kioptrix VM3 is 192.168.48.149
 
 To identify the target’s IP address in your network, run a network scan from your attacking machine using nmap:
 
