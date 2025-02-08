@@ -184,28 +184,7 @@ index: 0x21 RID: 0x4c4 acb: 0x00000011 Account: tomcat55        Name: (null)    
 index: 0x22 RID: 0x3f0 acb: 0x00000011 Account: sync    Name: sync      Desc: (null)
 index: 0x23 RID: 0x3fc acb: 0x00000011 Account: uucp    Name: uucp      Desc: (null)
 
-user:[games] rid:[0x3f2]
-user:[nobody] rid:[0x1f5]
-user:[bind] rid:[0x4ba]
-user:[proxy] rid:[0x402]
-user:[syslog] rid:[0x4b4]
-user:[user] rid:[0xbba]
-user:[www-data] rid:[0x42a]
-user:[root] rid:[0x3e8]
-user:[news] rid:[0x3fa]
-user:[postgres] rid:[0x4c0]
-user:[bin] rid:[0x3ec]
-user:[mail] rid:[0x3f8]
-user:[distccd] rid:[0x4c6]
-user:[proftpd] rid:[0x4ca]
-user:[dhcp] rid:[0x4b2]
-user:[daemon] rid:[0x3ea]
-user:[sshd] rid:[0x4b8]
-user:[man] rid:[0x3f4]
-user:[lp] rid:[0x3f6]
-user:[mysql] rid:[0x4c2]
-user:[gnats] rid:[0x43a]
-user:[libuuid] rid:[0x4b0]
+user:[games] 
 user:[backup] rid:[0x42c]
 user:[msfadmin] rid:[0xbb8]
 user:[telnetd] rid:[0x4c8]
@@ -218,149 +197,9 @@ user:[irc] rid:[0x436]
 user:[ftp] rid:[0x4be]
 user:[tomcat55] rid:[0x4c4]
 user:[sync] rid:[0x3f0]
-user:[uucp] rid:[0x3fc]
-
- ================================( Share Enumeration on 192.168.48.145 )================================
-                                                                                                                     
-                                                                                                                     
-        Sharename       Type      Comment
-        ---------       ----      -------
-        print$          Disk      Printer Drivers
-        tmp             Disk      oh noes!
-        opt             Disk      
-        IPC$            IPC       IPC Service (metasploitable server (Samba 3.0.20-Debian))
-        ADMIN$          IPC       IPC Service (metasploitable server (Samba 3.0.20-Debian))
-Reconnecting with SMB1 for workgroup listing.
-
-        Server               Comment
-        ---------            -------
-
-        Workgroup            Master
-        ---------            -------
-        WORKGROUP            METASPLOITABLE
-
-[+] Attempting to map shares on 192.168.48.145                                                                       
-                                                                                                                     
-//192.168.48.145/print$ Mapping: DENIED Listing: N/A Writing: N/A                                                    
-//192.168.48.145/tmp    Mapping: OK Listing: OK Writing: N/A
-//192.168.48.145/opt    Mapping: DENIED Listing: N/A Writing: N/A
-
-[E] Can't understand response:                                                                                       
-                                                                                                                     
-NT_STATUS_NETWORK_ACCESS_DENIED listing \*                                                                           
-//192.168.48.145/IPC$   Mapping: N/A Listing: N/A Writing: N/A
-//192.168.48.145/ADMIN$ Mapping: DENIED Listing: N/A Writing: N/A
-
- ===========================( Password Policy Information for 192.168.48.145 )===========================
-                                                                                                                     
-                                                                                                                     
-
-[+] Attaching to 192.168.48.145 using a NULL share
-
-[+] Trying protocol 139/SMB...
-
-[+] Found domain(s):
-
-        [+] METASPLOITABLE
-        [+] Builtin
-
-[+] Password Info for Domain: METASPLOITABLE
-
-        [+] Minimum password length: 5
-        [+] Password history length: None
-        [+] Maximum password age: Not Set
-        [+] Password Complexity Flags: 000000
-
-                [+] Domain Refuse Password Change: 0
-                [+] Domain Password Store Cleartext: 0
-                [+] Domain Password Lockout Admins: 0
-                [+] Domain Password No Clear Change: 0
-                [+] Domain Password No Anon Change: 0
-                [+] Domain Password Complex: 0
-
-        [+] Minimum password age: None
-        [+] Reset Account Lockout Counter: 30 minutes 
-        [+] Locked Account Duration: 30 minutes 
-        [+] Account Lockout Threshold: None
-        [+] Forced Log off Time: Not Set
-
-
-
-[+] Retieved partial password policy with rpcclient:                                                                 
-                                                                                                                     
-                                                                                                                     
-Password Complexity: Disabled                                                                                        
-Minimum Password Length: 0
-
-
- ======================================( Groups on 192.168.48.145 )======================================
-                                                                                                                     
-                                                                                                                     
-[+] Getting builtin groups:                                                                                          
-                                                                                                                     
-                                                                                                                     
-[+]  Getting builtin group memberships:                                                                              
-                                                                                                                     
-                                                                                                                     
-[+]  Getting local groups:                                                                                           
-                                                                                                                     
-                                                                                                                     
-[+]  Getting local group memberships:                                                                                
-                                                                                                                     
-                                                                                                                     
-[+]  Getting domain groups:                                                                                          
-                                                                                                                     
-                                                                                                                     
-[+]  Getting domain group memberships:                                                                               
-                                                                                                                     
-                                                                                                                     
- =================( Users on 192.168.48.145 via RID cycling (RIDS: 500-550,1000-1050) )=================
-                                                                                                                     
-                                                                                                                     
-[I] Found new SID:                                                                                                   
-S-1-5-21-1042354039-2475377354-766472396                                                                             
-
-[+] Enumerating users using SID S-1-5-21-1042354039-2475377354-766472396 and logon username '', password ''          
-                                                                                                                     
-S-1-5-21-1042354039-2475377354-766472396-500 METASPLOITABLE\Administrator (Local User)                               
-S-1-5-21-1042354039-2475377354-766472396-501 METASPLOITABLE\nobody (Local User)
-S-1-5-21-1042354039-2475377354-766472396-512 METASPLOITABLE\Domain Admins (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-513 METASPLOITABLE\Domain Users (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-514 METASPLOITABLE\Domain Guests (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1000 METASPLOITABLE\root (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1001 METASPLOITABLE\root (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1002 METASPLOITABLE\daemon (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1003 METASPLOITABLE\daemon (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1004 METASPLOITABLE\bin (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1005 METASPLOITABLE\bin (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1006 METASPLOITABLE\sys (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1007 METASPLOITABLE\sys (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1008 METASPLOITABLE\sync (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1009 METASPLOITABLE\adm (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1010 METASPLOITABLE\games (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1011 METASPLOITABLE\tty (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1012 METASPLOITABLE\man (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1013 METASPLOITABLE\disk (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1014 METASPLOITABLE\lp (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1015 METASPLOITABLE\lp (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1016 METASPLOITABLE\mail (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1017 METASPLOITABLE\mail (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1018 METASPLOITABLE\news (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1019 METASPLOITABLE\news (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1020 METASPLOITABLE\uucp (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1021 METASPLOITABLE\uucp (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1025 METASPLOITABLE\man (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1026 METASPLOITABLE\proxy (Local User)
-S-1-5-21-1042354039-2475377354-766472396-1027 METASPLOITABLE\proxy (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1031 METASPLOITABLE\kmem (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1041 METASPLOITABLE\dialout (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1043 METASPLOITABLE\fax (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1045 METASPLOITABLE\voice (Domain Group)
-S-1-5-21-1042354039-2475377354-766472396-1049 METASPLOITABLE\cdrom (Domain Group)
-
- ==============================( Getting printer info for 192.168.48.145 )==============================
-                                                                                                                     
-No printers returned.                                                                                                
+user:[uucp] 
+                                                                                     
+                                                                                                                   
 
 
 enum4linux complete on Thu Jan 16 20:27:35 2025
@@ -544,4 +383,4 @@ Close any open sessions and remove created files.
 Notes
 
 This guide is for educational purposes only. Always ensure you have authorization to perform penetration testing on any system.
-Metasploitable is intentionally vulnerable. Use it responsibly and in controlled environments.
+Metasploitable is intentionally vulnerable. Use it responsibly and in controlled environments.,
