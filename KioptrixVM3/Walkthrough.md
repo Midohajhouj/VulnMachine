@@ -1,11 +1,4 @@
-Here is a refined walkthrough for the Kioptrix VM3 penetration testing scenario, providing more clarity, added explanations, and details on the process. I've also included some corrections and improvements to make the walkthrough more useful and complete:
-
-
----
-
 Kioptrix VM3 Walkthrough
-
-By MIDO
 
 Prerequisites:
 
