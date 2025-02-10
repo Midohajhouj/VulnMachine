@@ -1,5 +1,4 @@
-## GoatseLinux Walkthrough by MIDO
-
+## GoatseLinux Walkthrough 
 This is a step-by-step guide to exploiting and escalating privileges on the GoatseLinux machine. The walkthrough involves enumeration, service scanning, web application exploitation, and privilege escalation.
 
 ## Prerequisites:
