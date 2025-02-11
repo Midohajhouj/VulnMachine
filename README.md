@@ -27,8 +27,10 @@ Before starting any of the walkthroughs, make sure you have the following setup:
 
 To get started, clone the VulnMachine Walkthrough repository to your local machine:
 
-git clone https://github.com/yourusername/vulnmachine-walkthrough.git
-cd vulnmachine-walkthrough
+git clone https://github.com/Midohajhouj/VulnMachine.git
+
+
+cd VulnMachine
 
 ## 2. Download the Vulnerable Machine
 
