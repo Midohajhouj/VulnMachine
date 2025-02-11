@@ -113,7 +113,7 @@ hydra -L usr.txt -P usr.txt 192.168.48.166 ssh -I
 ssh Tr0ll@192.168.48.166
 ```
 
-**Note:** Upon logging in, the connection is terminated automatically: "LOL auto-kick."
+**Note:** Upon logging in, the connection is terminated automatically: "signature issues"
 
 ### Access via FTP
 
