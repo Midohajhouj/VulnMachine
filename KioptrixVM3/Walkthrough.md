@@ -13,7 +13,7 @@ Before starting, ensure the following:
 Ensure both the Kioptrix VM3 and the attacking machine are on the same network. To discover the target's IP address, perform a network scan using `nmap`:
 
 ```bash
-nmap 192.168.48.1/24 -T4
+nmap 192.168.48.1/24
 ```
 
 ### **Sample Output:**
