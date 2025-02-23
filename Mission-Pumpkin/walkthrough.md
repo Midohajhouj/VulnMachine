@@ -28,7 +28,7 @@ This guide provides a step-by-step walkthrough to identify and exploit vulnerabi
 - **Web Page:** [Mission-Pumpkin v1.0](https://www.vulnhub.com/entry/mission-pumpkin-v10-pumpkinraising,324/)  
 
 ### Example Target IP:
-- **Target IP:** `192.168.48.165`
+- **Target IP:** `192.168.48.163`
 
 ---
 
@@ -38,7 +38,7 @@ This guide provides a step-by-step walkthrough to identify and exploit vulnerabi
 
 #### Command:
 ```bash
-nmap -p- -A 192.168.48.165
+nmap -p- -A 192.168.48.163
 ```
 #### Example Output:
 ```
@@ -50,7 +50,7 @@ PORT   STATE SERVICE VERSION
 ### Enumeration of HTTP Service
 
 #### Access the Website:
-Visit `http://192.168.48.165` in your browser. The landing page displays a pumpkin-themed design with four pumpkin images.
+Visit `http://192.168.48.163` in your browser. The landing page displays a pumpkin-themed design with four pumpkin images.
 
 #### Page Source Analysis:
 - Found a **Base64-encoded message**:  
@@ -115,7 +115,7 @@ Combine all the seed IDs (69507, 50609, 86568) to form the password:
 
 #### Command:
 ```bash
-ssh jack@192.168.48.165
+ssh jack@192.168.48.163
 ```
 ---
 
@@ -147,6 +147,5 @@ cat flag.txt
 ---
 
 ## References
-
-- [VulnHub Mission Pumpkin Walkthrough](https://www.vulnhub.com/entry/mission-pumpkin-v10-pumpkinraising,324/)  
+ 
 - [Official Documentation for Wireshark](https://www.wireshark.org/docs/)
