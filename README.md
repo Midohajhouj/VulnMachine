@@ -43,7 +43,6 @@ Tools Used
     Burp Suite: A web vulnerability scanner and exploitation tool.
     Metasploit: A framework for finding and exploiting vulnerabilities.
     Netcat: A network utility for reverse shells and port forwarding.
-    LinPEAS: A script used for privilege escalation enumeration on Linux systems.
+    Linspect: A script used for privilege escalation enumeration on Linux systems.
 
-
-## *Walkthroughs by MIDO777*
+#### *<p align="center"> Walkthroughs by <a href="https://github.com/Midohajhouj">MIDO777</a> </p>*
