@@ -45,4 +45,4 @@ Tools Used
     Netcat: A network utility for reverse shells and port forwarding.
     Linspect: A script used for privilege escalation enumeration on Linux systems.
 
-#### *<p align="center"> Walkthroughs by <a href="https://github.com/Midohajhouj">MIDO777</a> </p>*
+#### *<p align="center"> Walkthroughs by <a href="https://github.com/Midohajhouj">LIONBAD</a> </p>*
