@@ -1,7 +1,4 @@
 # LazySysAdmin: 1 Walkthrough
-[VulnHub link](https://www.vulnhub.com/entry/lazysysadmin-1,205/)  
-By Togie Mcdogie
-
 ## **Prerequisites**
 Before starting, ensure the following:
 
